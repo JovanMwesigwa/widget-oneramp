@@ -169,12 +169,6 @@ export default function Home() {
         >
           {loading ? <Spinner /> : "Confirm"}
         </button>
-
-        {provider && (
-          <Callout.Root color="green" mt="5">
-            <Callout.Text>✅ MiniPay detected!</Callout.Text>
-          </Callout.Root>
-        )}
       </Container>
 
       <div className="w-full flex items-center justify-center">

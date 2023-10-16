@@ -6,7 +6,7 @@ const Spinner = () => {
       <div role="status">
         <svg
           aria-hidden="true"
-          className="w-9 h-9 mr-2 text-gray-400 animate-spin  fill-neutral-100"
+          className="w-5 h-5 mr-2 text-gray-400 animate-spin  fill-neutral-100"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
