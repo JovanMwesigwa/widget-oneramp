@@ -42,7 +42,9 @@ export default function Home() {
     }
   }, []);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
     try {
       setLoading(true);
 
@@ -82,7 +84,7 @@ export default function Home() {
   };
 
   return (
-    <main className="h-screen w-full overflow-y-auto">
+    <form onSubmit={handleSubmit} className="h-screen w-full overflow-y-auto">
       <Container
         size="1"
         p="3"
@@ -159,7 +161,8 @@ export default function Home() {
         />
 
         <button
-          onClick={handleSubmit}
+          // onClick={handleSubmit}
+          type="submit"
           disabled={loading || !phone || Number(amount) <= 0}
           className={`w-full flex items-center justify-center p-4 ${
             loading || !phone || Number(amount) <= 0
@@ -176,6 +179,6 @@ export default function Home() {
           Powered by <span className="font-bold"> Oneramp</span>
         </p>
       </div>
-    </main>
+    </form>
   );
 }
