@@ -82,7 +82,7 @@ export default function Home() {
   };
 
   return (
-    <main className="h-screen w-full">
+    <main className="h-screen w-full overflow-y-auto">
       <Container
         size="1"
         p="3"
