@@ -5,19 +5,17 @@ import Image from "next/image";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import Tabs from "./Tabs";
 
-import cUSDToken from "../assets/tokens/cusd.png";
-import SelectCurrency from "./SelectCurrency";
-import ExchangeRates from "./ExchangeRates";
-import { useEffect, useState } from "react";
 import { countryPhonePrefixes } from "@/data";
-import { useConnect } from "wagmi";
-import { ethers } from "ethers";
 import { OneRamp } from "@oneramp/sdk";
+import { ethers } from "ethers";
+import { useEffect, useState } from "react";
+import cUSDToken from "../assets/tokens/cusd.png";
+import ExchangeRates from "./ExchangeRates";
+import SelectCurrency from "./SelectCurrency";
 import Spinner from "./Spinner";
 
-const clientPub = "RMPPUBK-ac207989912b456613d700c31b3cc4f9-X";
-const secretKey =
-  "RMPSEC-939a99a984d483a69d8a417ec616705ec27de60cd89df5fca2c9c3dbba71a373-X";
+const clientPub = process.env.NEXT_ONERAMP_CLIENT!;
+const secretKey = process.env.NEXT_ONERAMP_SECRET!;
 
 export default function Home() {
   const [amount, setAmount] = useState<number | string>(1);
