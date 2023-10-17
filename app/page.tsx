@@ -176,7 +176,7 @@ export default function Home() {
       </Container>
 
       <div className="w-full flex items-center justify-center">
-        <p className="mr-1 font-light">Powered by</p>
+        <p className="mr-1 font-light text-sm md:text-base">Powered by</p>
         <Image
           priority
           src="/logo-light.svg"
