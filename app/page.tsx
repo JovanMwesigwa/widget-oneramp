@@ -8,7 +8,7 @@ import Tabs from "./Tabs";
 import { countryPhonePrefixes } from "@/data";
 import { OneRamp } from "@oneramp/sdk";
 import { ethers } from "ethers";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import cUSDToken from "../assets/tokens/cusd.png";
 import ExchangeRates from "./ExchangeRates";
 import SelectCurrency from "./SelectCurrency";
@@ -28,7 +28,16 @@ export default function Home() {
 
   const [provider, setProvider] = useState<any>();
 
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTo({
+        top: containerRef.current.scrollHeight,
+        behavior: "smooth", // Optional, for a smooth scrolling animation
+      });
+    }
+
     // Ensure MiniPay provider is available
     if (window.ethereum && window.ethereum.isMiniPay) {
       // const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -82,97 +91,96 @@ export default function Home() {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="h-screen w-full overflow-y-auto p-5"
-    >
+    <div className="h-screen w-full overflow-y-auto p-5" ref={containerRef}>
       <Container
         size="1"
         p="3"
         className=" h-full flex items-center justify-center"
       >
-        {success && (
-          <Callout.Root color="green" mb="3">
-            <Callout.Text>
-              🎉 Success! Your withdraw to mobile money was successful
-            </Callout.Text>
-          </Callout.Root>
-        )}
+        <form onSubmit={handleSubmit}>
+          {success && (
+            <Callout.Root color="green" mb="3">
+              <Callout.Text>
+                🎉 Success! Your withdraw to mobile money was successful
+              </Callout.Text>
+            </Callout.Root>
+          )}
 
-        {error && (
-          <Callout.Root color="red" mb="3">
-            <Callout.Text>{error}</Callout.Text>
-          </Callout.Root>
-        )}
+          {error && (
+            <Callout.Root color="red" mb="3">
+              <Callout.Text>{error}</Callout.Text>
+            </Callout.Root>
+          )}
 
-        <Flex gap="7">
-          <Tabs />
-        </Flex>
+          <Flex gap="7">
+            <Tabs />
+          </Flex>
 
-        <div className="flex mt-14 flex-1 ">
-          <div className="flex flex-row items-center w-full gap-4">
-            <div className="bg-neutral-100 flex w-1/3 px-7 border gap-4 border-neutral-500 rounded-md items-center justify-center h-full">
-              <Image
-                src={cUSDToken}
-                style={{ width: 25, height: 25 }}
-                alt="cUSD token"
+          <div className="flex mt-14 flex-1 ">
+            <div className="flex flex-row items-center w-full gap-4">
+              <div className="bg-neutral-100 flex w-1/3 px-7 border gap-4 border-neutral-500 rounded-md items-center justify-center h-full">
+                <Image
+                  src={cUSDToken}
+                  style={{ width: 25, height: 25 }}
+                  alt="cUSD token"
+                />
+                <h3 className="hidden md:block font-medium text-sm md:text-base">
+                  cUSD
+                </h3>
+              </div>
+              <input
+                type="number"
+                className="w-full border bg-neutral-100 p-4 rounded-md border-neutral-500"
+                onBlur={() => setError("")}
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
               />
-              <h3 className="hidden md:block font-medium text-sm md:text-base">
-                cUSD
-              </h3>
             </div>
-            <input
-              type="number"
-              className="w-full border bg-neutral-100 p-4 rounded-md border-neutral-500"
-              onBlur={() => setError("")}
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-            />
           </div>
-        </div>
 
-        <div className="w-full flex flex-col items-center justify-center h-12 mt-3">
-          <SlArrowUp />
-          <SlArrowDown />
-        </div>
-
-        <p className="text-center mb-4 text-xs md:text-base">
-          Select your currency
-        </p>
-        <div className="flex  flex-1 ">
-          <div className="flex flex-row items-center w-full gap-4">
-            <SelectCurrency
-              setSelectedCurrency={setSelectedCurrency}
-              setCode={setCode}
-            />
-
-            <input
-              type="tel"
-              className="w-full border bg-neutral-100 p-4 rounded-md border-neutral-500"
-              onChange={(e) => setPhone(e.target.value)}
-              onBlur={() => setError("")}
-            />
+          <div className="w-full flex flex-col items-center justify-center h-12 mt-3">
+            <SlArrowUp />
+            <SlArrowDown />
           </div>
-        </div>
 
-        <ExchangeRates
-          currency={selectedCurrency}
-          token="cUSD"
-          amount={Number(amount)}
-        />
+          <p className="text-center mb-4 text-xs md:text-base">
+            Select your currency
+          </p>
+          <div className="flex  flex-1 ">
+            <div className="flex flex-row items-center w-full gap-4">
+              <SelectCurrency
+                setSelectedCurrency={setSelectedCurrency}
+                setCode={setCode}
+              />
 
-        <button
-          // onClick={handleSubmit}
-          type="submit"
-          disabled={loading || !phone || Number(amount) <= 0}
-          className={`w-full flex items-center justify-center p-4 ${
-            loading || !phone || Number(amount) <= 0
-              ? "bg-neutral-200"
-              : "bg-black"
-          }  text-sm md:text-base rounded-full text-white font-bold`}
-        >
-          {loading ? <Spinner /> : "Confirm"}
-        </button>
+              <input
+                type="tel"
+                className="w-full border bg-neutral-100 p-4 rounded-md border-neutral-500"
+                onChange={(e) => setPhone(e.target.value)}
+                onBlur={() => setError("")}
+              />
+            </div>
+          </div>
+
+          <ExchangeRates
+            currency={selectedCurrency}
+            token="cUSD"
+            amount={Number(amount)}
+          />
+
+          <button
+            // onClick={handleSubmit}
+            type="submit"
+            disabled={loading || !phone || Number(amount) <= 0}
+            className={`w-full flex items-center justify-center p-4 ${
+              loading || !phone || Number(amount) <= 0
+                ? "bg-neutral-200"
+                : "bg-black"
+            }  text-sm md:text-base rounded-full text-white font-bold`}
+          >
+            {loading ? <Spinner /> : "Confirm"}
+          </button>
+        </form>
       </Container>
 
       <div className="w-full flex items-center justify-center">
@@ -185,6 +193,6 @@ export default function Home() {
           alt="By oneramp.io"
         />
       </div>
-    </form>
+    </div>
   );
 }
