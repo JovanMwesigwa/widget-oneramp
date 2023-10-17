@@ -84,7 +84,10 @@ export default function Home() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="h-screen w-full overflow-y-auto">
+    <form
+      onSubmit={handleSubmit}
+      className="h-screen w-full overflow-y-auto p-5"
+    >
       <Container
         size="1"
         p="3"
@@ -175,9 +178,14 @@ export default function Home() {
       </Container>
 
       <div className="w-full flex items-center justify-center">
-        <p>
-          Powered by <span className="font-bold"> Oneramp</span>
-        </p>
+        <p className="mr-1 font-light">Powered by</p>
+        <Image
+          priority
+          src="/logo-light.svg"
+          height={60}
+          width={60}
+          alt="By oneramp.io"
+        />
       </div>
     </form>
   );
