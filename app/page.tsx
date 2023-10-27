@@ -91,7 +91,7 @@ export default function Home() {
   };
 
   return (
-    <div className="h-screen w-full overflow-y-auto p-5" ref={containerRef}>
+    <div className="h-screen w-full overflow-y-auto md:p-5" ref={containerRef}>
       <Container
         size="1"
         p="3"
@@ -118,19 +118,19 @@ export default function Home() {
 
           <div className="flex mt-14 flex-1 ">
             <div className="flex flex-row items-center w-full gap-4">
-              <div className="bg-neutral-100 flex w-1/3 px-7 border gap-4 border-neutral-500 rounded-md items-center justify-center h-full">
+              <div className="bg-neutral-100 flex w-1/3 px-7 border gap-2 md:gap-4 border-neutral-500 rounded-md items-center justify-center py-2 md:py-0 md:h-full">
                 <Image
                   src={cUSDToken}
-                  style={{ width: 25, height: 25 }}
+                  style={{ width: 20, height: 20 }}
                   alt="cUSD token"
                 />
-                <h3 className="hidden md:block font-medium text-sm md:text-base">
+                <h3 className=" md:block font-medium text-xs md:text-base">
                   cUSD
                 </h3>
               </div>
               <input
                 type="number"
-                className="w-full border bg-neutral-100 p-4 rounded-md border-neutral-500"
+                className="w-full text-xs outline-none md:text-base border bg-neutral-100 h-full px-3  md:p-4 rounded-md border-neutral-500"
                 onBlur={() => setError("")}
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
@@ -138,12 +138,12 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="w-full flex flex-col items-center justify-center h-12 mt-3">
-            <SlArrowUp />
-            <SlArrowDown />
+          <div className="w-full flex flex-col  items-center justify-center h-8 md:h-12 mt-6">
+            <SlArrowUp size={12} />
+            <SlArrowDown size={12} />
           </div>
 
-          <p className="text-center mb-4 text-xs md:text-base">
+          <p className="text-center mb-6 text-xs md:text-md">
             Select your currency
           </p>
           <div className="flex  flex-1 ">
@@ -155,7 +155,8 @@ export default function Home() {
 
               <input
                 type="tel"
-                className="w-full border bg-neutral-100 p-4 rounded-md border-neutral-500"
+                className="w-full text-xs outline-none md:text-base border bg-neutral-100 h-full px-3  md:p-4 rounded-md border-neutral-500"
+                placeholder="Enter your phone"
                 onChange={(e) => setPhone(e.target.value)}
                 onBlur={() => setError("")}
               />
@@ -172,7 +173,7 @@ export default function Home() {
             // onClick={handleSubmit}
             type="submit"
             disabled={loading || !phone || Number(amount) <= 0}
-            className={`w-full flex items-center justify-center p-4 ${
+            className={`w-full flex items-center justify-center p-3 md:p-4 ${
               loading || !phone || Number(amount) <= 0
                 ? "bg-neutral-200"
                 : "bg-black"
@@ -184,12 +185,12 @@ export default function Home() {
       </Container>
 
       <div className="w-full flex items-center justify-center">
-        <p className="mr-1 font-light text-sm md:text-base">Powered by</p>
+        <p className="mr-1 font-light text-xs md:text-sm">Powered by</p>
         <Image
           priority
           src="/logo-light.svg"
-          height={60}
-          width={60}
+          height={40}
+          width={40}
           alt="By oneramp.io"
         />
       </div>

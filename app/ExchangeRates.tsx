@@ -28,7 +28,7 @@ const ExchangeRates = ({
   }, [amount, currency]);
 
   return (
-    <h2 className="text-center my-4 text-sm md:text-base">
+    <h2 className="text-center my-6 text-xs md:text-sm">
       {amount} {token} ={" "}
       <span className="font-bold">
         {currency} {recieveAmount.toFixed(2)}

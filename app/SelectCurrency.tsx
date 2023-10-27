@@ -14,7 +14,7 @@ const SelectCurrency = ({
       onChange={(e) => {
         setSelectedCurrency(e.target.value);
       }}
-      className="bg-neutral-100 w-1/2 md:w-1/3 md:text-base cursor-pointer flex md:px-7 border text-sm px-2 border-neutral-500 rounded-md items-center justify-center h-full"
+      className="bg-neutral-100 w-1/2 text-xs md:w-1/3 md:text-base cursor-pointer flex md:px-7 border px-2 border-neutral-500 rounded-md items-center justify-center p-3 md:h-full outline-none"
     >
       <option value="UGX">UGX</option>
       <option value="KES">KES</option>
