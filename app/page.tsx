@@ -91,16 +91,19 @@ export default function Home() {
   };
 
   return (
-    <div className="h-screen w-full overflow-y-auto md:p-5" ref={containerRef}>
+    <div
+      className="h-screen w-full overflow-y-auto py-12 md:py-0 md:p-5 "
+      ref={containerRef}
+    >
       <Container
         size="1"
         p="3"
-        className=" h-full flex items-center justify-center"
+        className=" h-full flex items-center  md:justify-center"
       >
         <form onSubmit={handleSubmit}>
           {success && (
             <Callout.Root color="green" mb="3">
-              <Callout.Text>
+              <Callout.Text size="1">
                 🎉 Success! Your withdraw to mobile money was successful
               </Callout.Text>
             </Callout.Root>
@@ -108,7 +111,7 @@ export default function Home() {
 
           {error && (
             <Callout.Root color="red" mb="3">
-              <Callout.Text>{error}</Callout.Text>
+              <Callout.Text size="1">{error}</Callout.Text>
             </Callout.Root>
           )}
 
@@ -144,7 +147,7 @@ export default function Home() {
           </div>
 
           <p className="text-center mb-6 text-xs md:text-md">
-            Select your currency
+            Select your currency & contact
           </p>
           <div className="flex  flex-1 ">
             <div className="flex flex-row items-center w-full gap-4">
