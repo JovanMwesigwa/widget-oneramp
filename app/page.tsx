@@ -92,7 +92,7 @@ export default function Home() {
 
   return (
     <div
-      className="h-screen w-full overflow-y-auto py-12 md:py-0 md:p-5 "
+      className="h-screen w-full overflow-y-auto pt-12 md:py-0 md:p-5 "
       ref={containerRef}
     >
       <Container
