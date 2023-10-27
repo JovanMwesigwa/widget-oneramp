@@ -121,7 +121,7 @@ export default function Home() {
 
           <div className="flex mt-14 flex-1 ">
             <div className="flex flex-row items-center w-full gap-4">
-              <div className="bg-neutral-100 flex w-1/3 px-7 border gap-2 md:gap-4 border-neutral-500 rounded-md items-center justify-center py-2 md:py-0 md:h-full">
+              <div className="bg-neutral-100 flex w-1/3 px-7 border gap-2 md:gap-4 border-neutral-500 rounded-md items-center justify-center py-3 md:py-0 md:h-full">
                 <Image
                   src={cUSDToken}
                   style={{ width: 20, height: 20 }}
@@ -133,7 +133,7 @@ export default function Home() {
               </div>
               <input
                 type="number"
-                className="w-full text-xs outline-none md:text-base border bg-neutral-100 h-full px-3  md:p-4 rounded-md border-neutral-500"
+                className="w-full text-sm outline-none md:text-base border bg-neutral-100 h-full px-3  md:p-4 rounded-md border-neutral-500"
                 onBlur={() => setError("")}
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
@@ -158,7 +158,7 @@ export default function Home() {
 
               <input
                 type="tel"
-                className="w-full text-xs outline-none md:text-base border bg-neutral-100 h-full px-3  md:p-4 rounded-md border-neutral-500"
+                className="w-full text-sm outline-none md:text-base border bg-neutral-100 h-full px-3  md:p-4 rounded-md border-neutral-500"
                 placeholder="Enter your phone"
                 onChange={(e) => setPhone(e.target.value)}
                 onBlur={() => setError("")}
