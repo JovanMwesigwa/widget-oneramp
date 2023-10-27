@@ -82,11 +82,11 @@ export default function Home() {
         setSuccess(true);
       } else {
         setLoading(false);
-        setError("Transaction approval failed!");
+        setError("❌ Transaction progress failed!");
       }
     } catch (error) {
       setLoading(false);
-      setError("Process failed!, something went wrong");
+      setError("⛔️ Process failed!, something went wrong");
     }
   };
 
